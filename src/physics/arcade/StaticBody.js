@@ -486,13 +486,14 @@ var StaticBody = new Class({
     },
 
     /**
-     * [description]
+     * Sets the size of the body.
+     * Resets the body to match the current frame if no width or height is provided.
      *
      * @method Phaser.Physics.Arcade.StaticBody#setSize
      * @since 3.0.0
      *
-     * @param {number} width - [description]
-     * @param {number} height - [description]
+     * @param {number} width - The width of the Body, in source pixels.
+     * @param {number} height - The height of the Body, in source pixels.
      * @param {number} [offsetX] - [description]
      * @param {number} [offsetY] - [description]
      *
@@ -500,6 +501,8 @@ var StaticBody = new Class({
      */
     setSize: function (width, height, offsetX, offsetY)
     {
+        if (width === undefined) { width = this.gameObject.frame.data.sourceSize.w; }
+        if (height === undefined) { height = this.gameObject.frame.data.sourceSize.h; }
         if (offsetX === undefined) { offsetX = this.offset.x; }
         if (offsetY === undefined) { offsetY = this.offset.y; }
 
